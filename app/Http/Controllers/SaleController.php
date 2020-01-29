@@ -25,7 +25,7 @@ class SaleController extends Controller
 
         $vendas = Sale::whereDate('updated_at', $periodo)->where('customer_id', '=', $customer_id)->get();
         $resultadoVendas = DB::select(
-            "SELECT any_value(sales.quantity) as quantity, (sum(products.price)) as total, sales.status as status
+            "SELECT (COUNT(sales.status)) as quantity, ROUND(sum(products.price * sales.quantity ), 2) as total, sales.status as status
             FROM perfectpay.products as products
             INNER JOIN perfectpay.sales as sales
             ON products.id = sales.product_id
