@@ -1,1 +1,4 @@
-Dê um php artisan db:seed pra rodar as migrations/seeder/factory =)
+Faça 
+1. php artisan key:generate
+2. php artisan db:seed para rodar as migrations/factory/seeders
+=)
