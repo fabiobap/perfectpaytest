@@ -20,53 +20,57 @@
     <div class="container">
         @errors @enderrors
         @success @endsuccess
-        <h2>Editar</h2>
-        <!-- /.box-header -->
-        <form action="{{ route('vendas.update', ['sale' => $sale->id]) }}" method="POST">
-            <div class="form-row">
-                <div class="col-md-12">
-                    @csrf
-                    @method('PUT')
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroupPrepend1">Produto</span>
+        <div class="container mb-4 mt-5" style="border: 1px solid #dee2e6;">
+            <h2 class="text-center mb-3 mt-4">Editar</h2>
+            <!-- /.box-header -->
+            <form action="{{ route('vendas.update', ['sale' => $sale->id]) }}" method="POST">
+                <div class="form-row">
+                    <div class="col-md-12">
+                        @csrf
+                        @method('PUT')
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupPrepend1">Produto</span>
+                                </div>
+                                <input type="text" aria-describedby="inputGroupPrepend1" class="form-control" id="name"
+                                    name="name" value="{{ old('name', $sale->product->name ?? null) }}" required
+                                    autofocus>
                             </div>
-                            <input type="text" aria-describedby="inputGroupPrepend1" class="form-control" id="name"
-                                name="name" value="{{ old('name', $sale->product->name ?? null) }}" required autofocus>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroupPrepend2">Data</span>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupPrepend2">Data</span>
+                                </div>
+                                <input type="text" aria-describedby="inputGroupPrepend2" class="form-control"
+                                    id="updated_at" name="updated_at"
+                                    value="{{ old('updated_at', $sale->updated_at->format('d/m/Y') ?? null) }}"
+                                    required>
                             </div>
-                            <input type="text" aria-describedby="inputGroupPrepend2" class="form-control"
-                                id="updated_at" name="updated_at"
-                                value="{{ old('updated_at', $sale->updated_at->format('d/m/Y') ?? null) }}" required>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-12">
+                    <div class="col-md-12">
 
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroupPrepend3">Valor</span>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupPrepend3">Valor</span>
+                                </div>
+                                <input type="text" aria-describedby="inputGroupPrepend3" class="form-control" id="price"
+                                    name="price" value="{{ old('price', $sale->product->price ?? null) }}" required>
                             </div>
-                            <input type="text" aria-describedby="inputGroupPrepend3" class="form-control" id="price"
-                                name="price" value="{{ old('price', $sale->product->price ?? null) }}" required>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="text-right">
+                <div class="text-right mb-4">
 
-                <button type="submit" class="btn btn-outline-success">Filtrar</button>
-            </div>
-        </form>
+                    <button type="submit" class="btn btn-outline-success">Filtrar</button>
+                </div>
+            </form>
+        </div>
     </div>
 
 

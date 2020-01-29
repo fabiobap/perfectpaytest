@@ -46,7 +46,7 @@
                 </button>
             </form>
         </div>
-        <div class="tabela-vendas">
+        <div class="container mb-4 mt-5" style="border: 1px solid #dee2e6;">
             <h2>Tabela de Vendas</h2>
             <table class="table table-bordered">
                 <thead>
@@ -63,21 +63,21 @@
                     <tr>
                         <th scope="row">{{ $venda->product->name }}</th>
                         <td>{{ \Carbon\Carbon::parse($venda->updated_at)->format('d/m/yy')}}</td>
-                        <td>{{ $venda->product->price }}</td>
+                        <td>R$ {{ $venda->product->price }}</td>
                         <td><a href="/vendas/{{ $venda->id }}/edit" class="btn btn-outline-success">Editar</a></td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-        <div class="tabela-vendas">
+        <div class="container mb-4 mt-5" style="border: 1px solid #dee2e6;">
             <h2>Resultado das Vendas</h2>
             <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th scope="col">Status</th>
                         <th scope="col">Quantidade</th>
-                        <th scope="col">Total</th>
+                        <th scope="col">Valor Total</th>
                     </tr>
                 </thead>
                 <tbody>
