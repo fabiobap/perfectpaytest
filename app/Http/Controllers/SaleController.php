@@ -24,7 +24,14 @@ class SaleController extends Controller
         $clientes = Customer::all();
 
         $vendas = Sale::whereDate('updated_at', $periodo)->where('customer_id', '=', $customer_id)->get();
-        $resultadoVendas = DB::select(
+
+        $resultadoVendas = DB::table('sales')
+            ->join('products', 'products.id', '=', 'sales.product_id')
+            ->select('sales.status', DB::raw('COUNT(sales.status) as quantity'), DB::raw('ROUND(sum(products.price * sales.quantity ),2) as total'))
+            ->where([['sales.customer_id', '=', $customer_id], ['sales.updated_at', '=', $periodo->toDateString()]])
+            ->groupBy('sales.status')
+            ->get();
+        /*  $resultadoVendas = DB::select(
             "SELECT (COUNT(sales.status)) as quantity, ROUND(sum(products.price * sales.quantity ), 2) as total, sales.status as status
             FROM perfectpay.products as products
             INNER JOIN perfectpay.sales as sales
@@ -32,7 +39,7 @@ class SaleController extends Controller
             where sales.customer_id = ? and sales.updated_at = ? group by sales.status",
             [$customer_id, $periodo->toDateString()]
         );
-
+ */
         return view('sales.index', [
             'clientes' => $clientes,
             'vendas' => $vendas,
